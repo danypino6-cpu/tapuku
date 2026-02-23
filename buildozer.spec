@@ -17,6 +17,7 @@ android.ndk = 25b
 android.archs = arm64-v8a
 android.accept_sdk_license = True
 android.release_artifact = apk
+android.ndk_path =
 
 [buildozer]
 log_level = 2
