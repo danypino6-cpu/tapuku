@@ -43,7 +43,6 @@ class ControlFlotaApp(MDApp):
         self.sm = MDScreenManager()
         self.sm.add_widget(LoginScreen(name="login"))
         
-        # Pantalla Principal
         main_screen = MDScreen(name="principal")
         layout = MDBoxLayout(orientation='vertical', padding="10dp")
         
@@ -77,7 +76,6 @@ class ControlFlotaApp(MDApp):
             f_mante = 5000 - (km - u_mante)
             f_dife = 20000 - (km - u_dife)
             
-            # Alertas
             alerta = ""
             vencido = False
             if f_mante <= 0: 
@@ -133,9 +131,11 @@ class ControlFlotaApp(MDApp):
         self.dia.open()
 
     def update(self, *args):
-        if self.km_up.text: self.cursor.execute("UPDATE moviles SET km=? WHERE chapa=?", (float(self.km_up.text), self.sel))
-        if self.ch_up.text: self.cursor.execute("UPDATE moviles SET chofer=? WHERE chapa=?", (self.ch_up.text, self.sel))
-        self.conexion.commit(); self.cargar_datos(); self.dia.dismiss()
+        try:
+            if self.km_up.text: self.cursor.execute("UPDATE moviles SET km=? WHERE chapa=?", (float(self.km_up.text), self.sel))
+            if self.ch_up.text: self.cursor.execute("UPDATE moviles SET chofer=? WHERE chapa=?", (self.ch_up.text, self.sel))
+            self.conexion.commit(); self.cargar_datos(); self.dia.dismiss()
+        except: pass
 
     def reset_serv(self, tipo):
         self.cursor.execute("SELECT km FROM moviles WHERE chapa=?", (self.sel,))
