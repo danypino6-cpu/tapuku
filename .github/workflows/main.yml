@@ -27,8 +27,9 @@ jobs:
 
       - name: Build with Buildozer
         run: |
-          # El secreto: limitamos la memoria de Gradle para que no explote
+          # Limpiamos caché anterior y limitamos memoria para evitar crasheos
           export GRADLE_OPTS="-Dorg.gradle.jvmargs=-Xmx2048m"
+          buildozer android clean
           yes | buildozer -v android debug
         env:
           LDFLAGS: "-fuse-ld=lld"
@@ -36,5 +37,5 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: Mi_APK_Final
+          name: APK_Generada
           path: bin/*.apk
