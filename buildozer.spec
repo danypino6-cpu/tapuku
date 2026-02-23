@@ -8,7 +8,7 @@ source.include_exts = py,png,jpg,kv,atlas,db,csv
 # ESTA ES LA LÍNEA QUE FALTA Y QUE CAUSA EL ERROR:
 version = 0.1
 
-requirements = python3,kivy==2.3.0,kivymd==1.1.1,sqlite3,csv
+requirements = python3,kivy==2.3.0,kivymd==1.1.1,sqlite3
 orientation = portrait
 fullscreen = 1
 android.api = 33
